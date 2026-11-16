@@ -6,30 +6,6 @@ Live Demo: https://predictive-maintenance-dashboard-hydraulicfaultexplorer.strea
 
 The public demo requires no username or password. Try cycles **1** and **220** to compare two recorded pump conditions.
 
-## Dashboard
-
-Hydraulic Fault Explorer is a one-screen dashboard for reviewing pump leakage in a hydraulic test rig. Select a test cycle to see its recorded leakage condition and compare its 60-second flow trace with a healthy reference.
-
-- **Condition headline** summarizes the pump leakage label recorded for the selected cycle.
-- **Selected cycle** shows the measured flow in litres per minute (L/min).
-- **Healthy reference** shows the median flow at each time point across stable cycles where all four components were in their nominal condition.
-
-## Expected results
-
-| Recorded pump condition | Dashboard headline | Suggested follow-up | Demo cycle |
-| --- | --- | --- | --- |
-| No leakage | No pump leak recorded | Continue routine monitoring | 1 |
-| Weak internal leakage | Check the pump | Review the flow trace and flag for follow-up if warranted | Select a cycle labeled weak leakage |
-| Severe internal leakage | Inspect the pump first | Prioritize a pump inspection | 220 |
-
-The recorded condition comes from the UCI dataset. The chart helps users see where the selected flow trace differs from the healthy reference.
-
-## Work orders
-
-The Explorer supports manual inspection triage. In a real maintenance workflow, a technician could use the displayed condition and flow trace to document why an inspection was requested.
-
-If logging a work order, include the cycle number, recorded condition, and a screenshot of the flow comparison. Work-order creation, assignment, and tracking take place separately in the group's main dashboard or maintenance system.
-
 
 ## Architecture
 
@@ -41,20 +17,9 @@ profile.txt   ── test labels ────┘
 
 The app matches the two files by row, with one row per test cycle. It builds the healthy reference by taking the median flow at each time point across stable cycles with all four components in their nominal condition.
 
-## Run it
-
-1. Download and extract the [UCI Condition Monitoring of Hydraulic Systems dataset](https://archive.ics.uci.edu/dataset/447).
-2. Create `hydraulic_fault_explorer/data/` and place `FS1.txt` and `profile.txt` inside it.
-3. From the repository root, install the dependencies and start the app:
-
-   ```powershell
-   python -m pip install -r hydraulic_fault_explorer/requirements.txt
-   python -m streamlit run hydraulic_fault_explorer/app.py
-   ```
-
-4. Open the **Local URL** printed in the terminal.
-
 ## Dashboard
+
+Hydraulic Fault Explorer is a one-screen dashboard for reviewing pump leakage in a hydraulic test rig. Select a test cycle to see its recorded leakage condition and compare its 60-second flow trace with a healthy reference.
 
 Use **Test cycle** to change the displayed cycle. The headline summarizes the recorded pump condition, and the chart compares the selected cycle’s flow in L/min with the healthy reference.
 
@@ -62,6 +27,27 @@ Use **Test cycle** to change the displayed cycle. The headline summarizes the re
 | --- | --- | --- |
 | 1 | No leakage | No pump leak recorded |
 | 220 | Severe internal leakage | Inspect the pump first |
+
+- **Condition headline** summarizes the pump leakage label recorded for the selected cycle.
+- **Selected cycle** shows the measured flow in litres per minute (L/min).
+- **Healthy reference** shows the median flow at each time point across stable cycles where all four components were in their nominal condition.
+
+## Work orders
+
+The Explorer supports manual inspection triage. In a real maintenance workflow, a technician could use the displayed condition and flow trace to document why an inspection was requested.
+
+If logging a work order, include the cycle number, recorded condition, and a screenshot of the flow comparison. Work-order creation, assignment, and tracking take place separately in the group's main dashboard or maintenance system.
+
+## Expected results
+
+| Recorded pump condition | Dashboard headline | Suggested follow-up | Demo cycle |
+| --- | --- | --- | --- |
+| No leakage | No pump leak recorded | Continue routine monitoring | 1 |
+| Weak internal leakage | Check the pump | Review the flow trace and flag for follow-up if warranted | Select a cycle labeled weak leakage |
+| Severe internal leakage | Inspect the pump first | Prioritize a pump inspection | 220 |
+
+The recorded condition comes from the UCI dataset. The chart helps users see where the selected flow trace differs from the healthy reference.
+
 
 ## Dataset and scope
 
