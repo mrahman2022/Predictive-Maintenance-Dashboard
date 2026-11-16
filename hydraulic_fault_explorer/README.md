@@ -2,6 +2,8 @@
 
 A standalone dashboard for exploring pump leakage in a hydraulic test rig. Select a recorded test cycle to see the pump’s recorded condition and compare its 60-second flow trace with a healthy reference.
 
+Live Demo: https://predictive-maintenance-dashboard-hydraulicfaultexplorer.streamlit.app/
+
 **Access** — Run the app locally using the steps below. The Explorer requires no username or password.
 
 ## Architecture
